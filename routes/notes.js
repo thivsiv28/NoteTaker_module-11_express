@@ -7,8 +7,8 @@ const {
 } = require('../helpers/fsUtils');
 
 // GET Route for retrieving all the notes
-// see here, we have promise. annoying. express allows async aeasily
-notes.get('/', async (req, res) => { //mark as asyn
+
+notes.get('/', async (req, res) => {
   res.json(await getDbData());
 });
 
@@ -59,7 +59,7 @@ notes.post('/', (req, res) => {
   }
 });
 
-// convinient method
+
 const getDbData = async () => {
   const data = await readFromFile('./db/db.json');
   const json = JSON.parse(data);

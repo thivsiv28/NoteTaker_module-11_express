@@ -1,3 +1,4 @@
+//import express package
 const express = require('express');
 const path = require('path');
 const { clog } = require('./middleware/clog');
@@ -6,7 +7,7 @@ const api = require('./routes/index.js');
 //environment variable if theyre passing it use it or 3001
 const PORT = process.env.PORT || 3001;
 
-//initialzing and configuring express
+// Initialize our app variable by setting it to the value of express()
 const app = express();
 
 // Import custom middleware, "cLog"
@@ -30,6 +31,7 @@ app.get('*', (req, res) =>
   res.sendFile(path.join(__dirname, '/public/index.html'))
 );
 
+//listen for connections
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT} 🚀`)
 );
