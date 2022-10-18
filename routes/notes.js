@@ -33,7 +33,7 @@ notes.delete('/:id', async (req, res) => {
   const result = json.filter((note) => note.id !== noteId);
 
   // Save that array to the filesystem
-  writeToFile('./src/db/db.json', result);
+  writeToFile('./db/db.json', result);
 
   // Respond to the DELETE request
   res.json(`Note ${noteId} has been deleted 🗑️`);
@@ -52,7 +52,7 @@ notes.post('/', (req, res) => {
       id: uuidv4(),
     };
 
-    readAndAppend(newNote, './src/db/db.json');
+    readAndAppend(newNote, './db/db.json');
     res.json(`Note added successfully 🚀`);
   } else {
     res.error('Error in adding note');
@@ -61,7 +61,7 @@ notes.post('/', (req, res) => {
 
 // convinient method
 const getDbData = async () => {
-  const data = await readFromFile('./src/db/db.json');
+  const data = await readFromFile('./db/db.json');
   const json = JSON.parse(data);
 
   return json;
